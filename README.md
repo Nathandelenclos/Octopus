@@ -53,7 +53,7 @@ all:
 ## Usage/Examples
 
 ```bash
-ansible-playbook -i production playbook.yml
+ansible-playbook -i inventory.yml playbook.yml
 ```
 
 Now you can access poll platform on host ip poll-1.
