@@ -49,9 +49,14 @@ all:
           ansible_host: 0.0.0.0
 
 ```
+
 ## Usage/Examples
 
 ```bash
 ansible-playbook -i production playbook.yml
 ```
+
+Now you can access poll platform on host ip poll-1.
+
+And you can see the results of the poll on the ip of the host result-1.
 

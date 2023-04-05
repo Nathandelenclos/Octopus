@@ -17,7 +17,7 @@
     group: root
     mode: '0644'
 
-- name: Install Node Npm
+- name: Install Node and Npm
   apt:
     name: 
       - nodejs

@@ -3,7 +3,14 @@
   register: worker
   unarchive:
     src: ../../../worker.tar
-    dest: /opt/
+    dest: /home/
+
+- name: Copy Home to opt
+  when: worker.changed
+  copy: 
+    remote_src: True 
+    src: /home/worker
+    dest: /opt
 
 - name: Upload .service
   become: true
@@ -27,6 +34,7 @@
       - default-jre
 
 - name: Build project with Maven
+  when: worker.changed
   command: mvn clean package -f /opt/worker/pom.xml
   register: maven
   args:
