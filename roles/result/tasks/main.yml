@@ -1,0 +1,55 @@
+---
+- name: Unarchive result.tar
+  become: true
+  unarchive:
+    src: ../../../result.tar
+    dest: /opt/
+
+- name: Upload .service
+  become: true
+  register: service
+  vars:
+    port: "{{ result_port }}"
+  template:
+    src: ../files/result.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install Node Npm
+  apt:
+    name: 
+      - nodejs
+      - npm
+    state: present
+    
+- name: Install dependances
+  npm:
+    path: /opt/result/
+
+- name: Start service
+  become: true
+  when: service.changed
+  systemd:
+    name: result
+    state: restarted
+    enabled: yes
+
+- name: ufw rules
+  become: true
+  community.general.ufw:
+    rule: "allow"
+    port: "{{ item }}"
+    proto: "tcp"
+  with_items:
+    - "80"
+
+
+
+    #     Environment=PORT={{ port }}
+# Environment=POSTGRESQL_USER={{ postgresql_user }}
+# Environment=POSTGRESQL_PASSWORD={{ postgresql_password }}
+# Environment=POSTGRESQL_HOST={{ POSTGRESQL_HOST }}
+# Environment=POSTGRESQL_PORT={{ postgresql_port }}
+# Environment=POSTGRESQL_DB={{ postgresql_db }}
