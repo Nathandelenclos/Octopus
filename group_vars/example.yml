@@ -1,0 +1,11 @@
+postgresql_pass:
+postgresql_user:
+postgresql_db:
+postgresql_port:
+postgresql_host:
+
+redis_port:
+redis_bind:
+redis_dir:
+redis_host:
+result_port:
