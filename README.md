@@ -56,7 +56,7 @@ all:
 ansible-playbook -i inventory.yml playbook.yml
 ```
 
-Now you can access poll platform on host ip poll-1. (example: 34.77.149.226)
+Now you can access poll platform on host ip poll-1. (example: http://34.77.149.226)
 
-And you can see the results of the poll on the ip of the host result-1. (example: 35.195.128.93)
+And you can see the results of the poll on the ip of the host result-1. (example: http://35.195.128.93)
 
